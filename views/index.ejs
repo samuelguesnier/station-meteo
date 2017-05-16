@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="fr">
 <head>
@@ -6,6 +6,24 @@
   <title>Sonde météo</title>
   <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+   <script src="/socket.io/socket.io.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script>
+
+           var socket = io.connect('http://localhost:3000');
+
+    </script>
+    <script>
+
+    socket.on('temperature', function(temperature) {
+
+            $(temp).text(temperature);
+            })
+  socket.on('humidite', function(humidite) {
+
+                    $(humi).text(humidite);
+                    })
+    </script>
 </head>
 
 <body>
@@ -14,11 +32,11 @@
     <h1>Sonde Météo</h1>
     <div id="wrap_temp">
       <img src="img/temp.png">
-      <span class="data"><%= temperature %> </span>°C
+      <span id="temp"></span>°C
     </div>
     <div id="wrap_hum">
       <img src="img/hum.png">
-      <span class="data">50</span>%
+      <span id="humi"></span>%
     </div>
   </div>
 
